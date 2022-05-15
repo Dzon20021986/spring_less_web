@@ -24,9 +24,18 @@ public class ProductService {
 		return productRepository.findById(id).orElseThrow();
 	}
 
-	public List<Product> findByPrice(Integer min, Integer max) {
-		return productRepository.finAllByPriceBetween(min, max);
+//	public List<Product> findByPrice(Integer min, Integer max) {
+//		return productRepository.findAllByPriceBetween(min, max);
+//	}
+
+	public void deleteById(long id) {
+		productRepository.deleteById(id);
 	}
+
+	public void insert(Product product) {
+		productRepository.save(product);
+	}
+
 
 //	public void changeCost(Long id, Integer cost) {
 //		Product product = productRepository.findById(id);

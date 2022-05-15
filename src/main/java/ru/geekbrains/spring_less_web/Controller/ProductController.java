@@ -19,20 +19,31 @@ public class ProductController {
 
     }
 
-    @GetMapping("/products")  // вернуть все продукты
+    @GetMapping("/products")  // вернуть все продукты +
     public List<Product> getAllProducts() {
         return productService.getAllProducts();
     }
 
-    @GetMapping("/products/find/id")  // поиск продукта по id
+    @GetMapping("/products/find/{id}")  // поиск продукта по id +
     public Product findById(@PathVariable Long id) {
          return productService.findById(id);
     }
 
-
-
-    @GetMapping("/products/between")
-    public List<Product> findByPrice(@RequestParam(defaultValue = "0") Integer min, @RequestParam(defaultValue = "150") Integer max) {
-        return productService.findByPrice(min, max);
+    @GetMapping("products/delete/{id}")  // удаление по id +
+    public void deleteById(@PathVariable long id) {
+        productService.deleteById(id);
     }
+
+    @PostMapping("/products")  // создание нового товара
+    public void createProduct(@RequestBody Product product) {
+        productService.insert(product);
+    }
+
+
+
+
+//    @GetMapping("/products/between")
+//    public List<Product> findByPrice(@RequestParam(defaultValue = "0") Integer min, @RequestParam(defaultValue = "20 0") Integer max) {
+//        return productService.findByPrice(min, max);///
+//    }
 }
